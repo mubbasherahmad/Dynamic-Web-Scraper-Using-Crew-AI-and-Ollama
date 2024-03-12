@@ -14,8 +14,8 @@ import requests
 from langchain.docstore.document import Document
 from bs4 import BeautifulSoup 
 from dotenv import load_dotenv
-# Load environment variables from .env file
 from urllib.parse import urlparse
+
 load_dotenv()
 search_tool = DuckDuckGoSearchRun()
 
