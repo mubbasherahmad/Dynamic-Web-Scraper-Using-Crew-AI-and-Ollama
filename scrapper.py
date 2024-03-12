@@ -17,8 +17,7 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 from urllib.parse import urlparse
 load_dotenv()
-model=os.getenv("MODEL_NAME")
-print(model)
+search_tool = DuckDuckGoSearchRun()
 
 def create_schema(property_names):
     """
@@ -45,25 +44,20 @@ def create_schema(property_names):
 
 schema_input = input("Enter a list of properties that you want to extract, separated by commas: ")
 
-        # Split the input string into a list based on the comma delimiter
+# Split the input string into a list based on the comma delimiter
 schema_list = [name.strip() for name in schema_input.split(',')]
 
-            # Print or use the schema as needed
+# Print or use the schema as needed
 schema = create_schema(schema_list)
 
 
-search_tool = DuckDuckGoSearchRun()
+
 class ScrapingTools:
     @tool("Scrape website content")    
     def scraping_tools(url: str):
-        
-       
         """This function helps in web scraping and extracting the data"""
-        print("A")
         response = requests.get(url)
         html_content=response.content
-        print("B")
-
         soup = BeautifulSoup(html_content, 'html.parser')
         html_text = soup.get_text()
         doc = Document(page_content=html_text, metadata={})
@@ -71,20 +65,16 @@ class ScrapingTools:
         docs_transformed = bs_transformer.transform_documents([doc], tags_to_extract=["span"])
         splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(chunk_size=1000, chunk_overlap=0)
         splits = splitter.split_documents(docs_transformed)
-      
-        
         return splits
+        
 class ExtractingTools:
     @tool("Extracting Data")    
     def extracting_tools(documents):
-        
         """This function helps in extracting the data and saving"""
-        
         print("In the extraction tool")
-        
         system_prompt = (
                 "You are an expert extraction algorithm. "
-                "Only extract relevant information from the text. "
+                "Only extract relevant and exact information from the text. "
                 "If you do not know the value of an attribute asked to extract, "
                 "you may omit the attribute's value."
             )
@@ -94,23 +84,16 @@ class ExtractingTools:
             print("h")
             return create_extraction_chain(schema=schema, llm=llm).invoke(content)
         scraped_data_raw=extract(schema=schema, content=documents)
-        print("scraped_raw",type(scraped_data_raw))
         scraped_data=scraped_data_raw['text']
         print(scraped_data)
-        
-
-
         return scraped_data
     
 
-    
-       
 sraping_tool=ScrapingTools().scraping_tools
 extractor_tool = ExtractingTools().extracting_tools
 
 
 def main():
-    
     url=input("Enter the URL of the Website\n")
     scraper = Agent(
             role='Web Scraper Agent',
@@ -154,19 +137,15 @@ def main():
         soup = BeautifulSoup(response.text, 'html.parser')
 
         # Look for 'a' tags containing 'Next' in their text
-        
         next_link = soup.find('a', string=re.compile(r'(next|more|next page|load more)', re.IGNORECASE))
-        print("next",next_link)
-
+     
         # If 'Next' link is not found, look for other common pagination classes
         if next_link is None:
             next_link = soup.find('a', class_=re.compile(r'(next|more|load more|next page)', re.IGNORECASE)) 
-            print("A") # Example class for next page link
-
+            
         # If 'Next' link is still not found, handle other pagination methods as needed
         if next_link is None:
             next_link = soup.find('a', {'title': 'Next'})
-            print("B")
         if next_link is None:
             next_link = soup.find('li', {'class':'next'})
          
@@ -174,10 +153,7 @@ def main():
             next_url = next_link.get('href')
             if next_url is None:
                 next_url=next_link.find('a')['href']
-
-            print(next_url)
-        
-            print("next url",next_url)
+                print("next url",next_url)
             if next_url.startswith('/'):
                 base_url = get_base_url(url)
                 next_url = base_url + next_url
@@ -197,7 +173,6 @@ def main():
         print("Running extraction task...")
         for split in scraped_data:
             extracted_data.append(s2_task.agent.tools[0](split.page_content))
-            print(extracted_data)
              
         # Assuming there's only one tool for extraction
         print("Extraction done.")
@@ -217,6 +192,6 @@ def main():
         
     
     
-# Run the asynchronous main function
+# Run the main function
 if __name__ == "__main__":
     main()
