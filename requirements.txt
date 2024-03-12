@@ -1,5 +1,5 @@
 langchain-community
-crewai
+crewai d
 requests
 beautifulsoup4
 python-dotenv
