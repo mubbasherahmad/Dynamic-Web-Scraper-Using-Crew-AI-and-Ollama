@@ -31,11 +31,11 @@ The application operates in several stages:
 
 Here's a brief demonstration of how the application works:
 
-1. The user inputs the properties they want to extract, such as "title, price, location".
-2. They then provide the URL of the OLX or Zameen listing page they wish to scrape.
+1. The user inputs the properties they want to extract, such as "type_of_property_listed, location_of_property_listed, size_of_property_listed,price_of_property_listed, purpose_of_property_listed".
+2. They then provide the URL of the OLX or Zameen listing page they wish to scrape such as "https://www.zameen.com/Homes/Islamabad-3-1.html".
 3. The web scraper agent begins its task, scraping the website content and passing the data to the extraction agent.
 4. The extraction agent processes the content, extracting information matching the user-defined schema.
-5. The extracted data is appended to a JSON file named `scraped_data_OO.json`.
+5. The extracted data is appended to a JSON file named `zameen_scraped_data.json`.
 
 ## How to Start
 
@@ -44,7 +44,7 @@ To run the application, follow these steps:
 1. Ensure you have Python installed on your system.
 2. Clone the repository to your local machine.
 3. Install the required dependencies by running `pip install -r requirements.txt`.
-4. Create a `.env` file in the root directory and define the `MODEL_NAME` and `PAGINATION` and 'FILE_NAME' environment variables.
+4. Create a `.env` file in the root directory and define the `MODEL_NAME` and `PAGINATION` and `FILE_NAME` environment variables.
 5. Run the application by executing `python scraper.py` in your terminal.
 6. Follow the on-screen prompts to input the properties and URL for scraping.
 
