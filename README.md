@@ -1,4 +1,4 @@
-# Dynamic Web Scraper Using Ollama Model
+# Dynamic Web Scraper Using Crew AI and Ollama
 
 ## Introduction
 
