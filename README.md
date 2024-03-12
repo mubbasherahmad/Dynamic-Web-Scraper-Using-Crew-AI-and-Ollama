@@ -8,7 +8,7 @@ This application serves as a dynamic web scraper designed to efficiently extract
 
 This web scraper is built using a combination of Python libraries and frameworks, each contributing to different aspects of the application:
 
-- **LangChain**: Provide tools for integrating large language models (LLMs) like Ollama into applications, as well as utilities for text splitting and HTML-to-text transformation.
+- **LangChain**: Provide tools for integrating large language models (LLMs) like Ollama into applications, as well as utilities for text splitting and HTML-to-text transformations.
 - **CrewAI**: Facilitates the creation of agents and tasks, enabling a structured approach to web scraping and data extraction.
 - **Requests**: A popular HTTP library for Python, used to send HTTP requests and interact with web pages.
 - **BeautifulSoup**: A Python library for parsing HTML and XML documents, used for web scraping and extracting data from web pages.
