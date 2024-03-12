@@ -83,4 +83,6 @@ def local_expert(self):
 - **Privacy**: Local models allow processing of data within your own infrastructure, ensuring data privacy.
 - **Customization**: You can customize the model to better suit the specific needs of your tasks.
 - **Performance**: Depending on your setup, local models can offer performance benefits, especially in terms of latency.
+
+- 
 Before running the application, make sure you have read and understood the terms of service of the website you intend to scrape, as web scraping may not be allowed on some websites without permission.
