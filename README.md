@@ -8,36 +8,6 @@ The choice to use Ollama over GPT-4 is primarily due to cost-effectiveness, as O
 
 The application is built with flexibility in mind, allowing users to specify the type of data they wish to extract, and it is equipped to handle pagination for comprehensive data collection.
 
-### Setting Up Ollama
-- **Install Ollama**: Ensure that Ollama is properly installed in your environment. Follow the installation guide provided by Ollama for detailed instructions.
-
-### Integrating Ollama with CrewAI
-- Instantiate Ollama Model: Create an instance of the Ollama model. You can specify the model and the base URL during instantiation. For example:
-
-```python
-from langchain.llms import Ollama
-ollama_openhermes = Ollama(model="agent")
-# Pass Ollama Model to Agents: When creating your agents within the CrewAI framework, you can pass the Ollama model as an argument to the Agent constructor. For instance:
-
-def local_expert(self):
-	return Agent(
-		role='Local Expert at this city',
-		goal='Provide the BEST insights about the selected city',
-		backstory="""A knowledgeable local guide with extensive information
-		about the city, it's attractions and customs""",
-		tools=[
-			SearchTools.search_internet,
-			BrowserTools.scrape_and_summarize_website,
-		],
-		llm=ollama_openhermes, # Ollama model passed here
-		verbose=True
-	)
-```
-
-### Advantages of Using Local Models
-- **Privacy**: Local models allow processing of data within your own infrastructure, ensuring data privacy.
-- **Customization**: You can customize the model to better suit the specific needs of your tasks.
-- **Performance**: Depending on your setup, local models can offer performance benefits, especially in terms of latency.
 
 ## Tools
 
@@ -83,4 +53,34 @@ To run the application, follow these steps:
 5. Run the application by executing `python scraper.py` in your terminal.
 6. Follow the on-screen prompts to input the properties and URL for scraping.
 
+### Setting Up Ollama
+- **Install Ollama**: Ensure that Ollama is properly installed in your environment. Follow the installation guide provided by Ollama for detailed instructions.
+
+### Integrating Ollama with CrewAI
+- Instantiate Ollama Model: Create an instance of the Ollama model. You can specify the model and the base URL during instantiation. For example:
+
+```python
+from langchain.llms import Ollama
+ollama_openhermes = Ollama(model="agent")
+# Pass Ollama Model to Agents: When creating your agents within the CrewAI framework, you can pass the Ollama model as an argument to the Agent constructor. For instance:
+
+def local_expert(self):
+	return Agent(
+		role='Local Expert at this city',
+		goal='Provide the BEST insights about the selected city',
+		backstory="""A knowledgeable local guide with extensive information
+		about the city, it's attractions and customs""",
+		tools=[
+			SearchTools.search_internet,
+			BrowserTools.scrape_and_summarize_website,
+		],
+		llm=ollama_openhermes, # Ollama model passed here
+		verbose=True
+	)
+```
+
+### Advantages of Using Local Models
+- **Privacy**: Local models allow processing of data within your own infrastructure, ensuring data privacy.
+- **Customization**: You can customize the model to better suit the specific needs of your tasks.
+- **Performance**: Depending on your setup, local models can offer performance benefits, especially in terms of latency.
 Before running the application, make sure you have read and understood the terms of service of the website you intend to scrape, as web scraping may not be allowed on some websites without permission.
