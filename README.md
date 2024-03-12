@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This application serves as a dynamic web scraper designed to efficiently extract data from websites using Crew ai and Ollama. It leverages the capabilities of the Ollama model, which is an alternative to OpenAI's GPT-4. The choice to use Ollama over GPT-4 is primarily due to cost-effectiveness, as Ollama provides a more affordable solution while still delivering powerful natural language processing and understanding capabilities. The application is built with flexibility in mind, allowing users to specify the type of data they wish to extract, and it is equipped to handle pagination for comprehensive data collection.
+This application serves as a dynamic web scraper designed to efficiently extract data from websites using Crew ai and Ollama Models. It leverages the capabilities of the Ollama model, which is an alternative to OpenAI's GPT-4. The choice to use Ollama over GPT-4 is primarily due to cost-effectiveness, as Ollama provides a more affordable solution while still delivering powerful natural language processing and understanding capabilities. The application is built with flexibility in mind, allowing users to specify the type of data they wish to extract, and it is equipped to handle pagination for comprehensive data collection.
 
 ## Tools
 
